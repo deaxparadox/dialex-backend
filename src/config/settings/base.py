@@ -41,12 +41,12 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
-    "apps.accounts",
-    "apps.cases",
-    "apps.debates",
-    "apps.consultations",
-    "apps.reviews",
-    "apps.notifications",
+    "apps.dialex.accounts",
+    "apps.dialex.cases",
+    "apps.dialex.debates",
+    "apps.dialex.consultations",
+    "apps.dialex.reviews",
+    "apps.dialex.notifications",
 ]
 
 MIDDLEWARE = [

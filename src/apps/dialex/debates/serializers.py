@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.reviews.serializers import HumanReviewSerializer
+from apps.dialex.reviews.serializers import HumanReviewSerializer
 
 from .models import AgentPersona, Argument, Debate, Verdict
 

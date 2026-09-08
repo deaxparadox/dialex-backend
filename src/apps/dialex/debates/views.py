@@ -3,7 +3,7 @@ from functools import cached_property
 from rest_framework import generics
 from rest_framework.exceptions import NotFound
 
-from apps.cases.models import CaseTypeConfig
+from apps.dialex.cases.models import CaseTypeConfig
 
 from .models import Argument, Debate
 from .serializers import ArgumentSerializer, DebateSerializer

@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class ReviewsConfig(AppConfig):
+class CasesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.reviews'
-    label = 'reviews'
+    name = 'apps.dialex.cases'
+    label = 'cases'

@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
 from rest_framework.response import Response
 
-from apps.debates.models import Debate
+from apps.dialex.debates.models import Debate
 
 from .serializers import HumanReviewSerializer
 
