@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "apps.dialex.consultations",
     "apps.dialex.reviews",
     "apps.dialex.notifications",
+    "apps.cofounder.chat",
 ]
 
 MIDDLEWARE = [
