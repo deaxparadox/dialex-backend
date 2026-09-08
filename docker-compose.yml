@@ -1,0 +1,23 @@
+name: dialex-backend
+
+networks:
+  dialex-net:
+    external: true
+
+services:
+  django:
+    build: .
+    env_file:
+      - .env
+    environment:
+      # Overrides .env's localhost DATABASE_URL — inside compose, Django
+      # reaches Postgres via the platform-infra repo's service name, not
+      # localhost (shared external network — ADR 0013 decision 4).
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    volumes:
+      # Dev convenience: live code reload without rebuilding the image.
+      - ./src:/app/src
+    ports:
+      - "8000:8000"
+    networks:
+      - dialex-net
