@@ -19,7 +19,12 @@ class CofounderSession(models.Model):
 
 class CofounderTurn(models.Model):
     """The user/agent back-and-forth log — same event-log shape as
-    ConsultationTurn (spec 0044)."""
+    ConsultationTurn (spec 0044).
+
+    `step` (spec 0049) is null for a free-form (`entrepreneur_graph`) turn
+    and 1-7 for a structured (`entrepreneur_structured_graph`) turn. Both
+    kinds of turn live in the same session/table on purpose — one Temporal
+    workflow, one turn history — distinguished only by this column."""
 
     class Speaker(models.TextChoices):
         USER = "user", "User"
@@ -29,6 +34,7 @@ class CofounderTurn(models.Model):
     turn_number = models.PositiveIntegerField()
     speaker = models.CharField(max_length=20, choices=Speaker.choices)
     content = models.TextField()
+    step = models.PositiveSmallIntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
