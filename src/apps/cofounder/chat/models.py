@@ -37,3 +37,21 @@ class CofounderTurn(models.Model):
 
     def __str__(self):
         return f"Turn {self.turn_number} ({self.speaker}) in session #{self.session_id}"
+
+
+class CofounderGeneratedImage(models.Model):
+    """A generated image's raw bytes (spec 0045), kept in its own table
+    rather than in CofounderTurn.content: base64 image data is far too
+    large for a Temporal Activity/Update result (a hard payload-size limit,
+    hit for real during this spec's own verification) — turn history
+    itself flows through Temporal, so it can never carry image bytes, only
+    a small reference to a row here. Written directly by the graph node
+    that generates the image (already running as one Activity), read back
+    only by a plain REST endpoint that never touches Temporal at all."""
+
+    session = models.ForeignKey(CofounderSession, on_delete=models.CASCADE, related_name="generated_images")
+    data = models.TextField(help_text="Base64-encoded image bytes.")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"CofounderGeneratedImage #{self.pk} (session #{self.session_id})"
